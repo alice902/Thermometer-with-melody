@@ -1,11 +1,10 @@
-
 #include "DHT.h"
 int temp;
 DHT dht;
 char play;
 
 int length = 15; // the number of notes
-char notes[] = "ccggaagffeeddc "; // a space represents a rest
+char notes[] = "ccggaagffeeddc "; // space represents a rest
 int beats[] = { 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 4 };
 int tempo = 300;
 
@@ -45,16 +44,16 @@ void setup()
     Serial.begin(9600);
   }
 
-void loop()
+void loop() //main loop
 {
   float temperature = dht.getTemperature();
   Serial.println(temperature, 1);
   delay(dht.getMinimumSamplingPeriod());
 
-  if (Serial.available() > 0)
+  if (Serial.available() > 0) //serial communication with LabView
     play = Serial.read();
 
-  if(play=='1')
+  if(play=='1') //playing music
   {
     for (int i = 0; i < length; i++) 
     {
